@@ -1,0 +1,16 @@
+# Ignore everything 
+/*
+
+# Except for files and folders we want to track
+!.config
+.config/*
+!.config/awesome
+!.config/nvim
+!.config/alacritty
+!.config/ranger
+!.config/macchina
+
+!.gitignore
+!.zshrc
+!.xprofile
+

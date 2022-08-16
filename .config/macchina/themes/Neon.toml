@@ -1,0 +1,56 @@
+# Neon
+
+spacing         = 1
+padding         = 2
+hide_ascii      = false
+separator       = ""
+key_color       = "Blue"
+separator_color = "White"
+
+[palette]
+type = "Dark"
+visible = true
+
+[bar]
+glyph           = "o"
+symbol_open     = ')'
+symbol_close    = '('
+hide_delimiters = true
+visible         = false
+
+[box]
+title 		= " I use Arch btw "
+border          = "rounded"
+visible         = true
+
+[box.inner_margin]
+x               = 1
+y               = 1
+
+[randomize]
+key_color       = false
+separator_color = false
+
+[custom_ascii]
+path 		= "~/.config/macchina/ascii"
+color		= "Cyan"
+
+[keys]
+host            = "Host"
+kernel          = "Kernel"
+battery         = "Battery"
+os              = "OS"
+de              = "DE"
+wm              = "WM"
+distro          = "Distro"
+terminal        = "Terminal"
+shell           = "Shell"
+packages        = "Packages"
+uptime          = "Uptime"
+memory          = "Memory"
+machine         = "Machine"
+local_ip        = "Local IP"
+backlight       = "Brightness"
+resolution      = "Resolution"
+cpu_load        = "CPU Load"
+cpu             = "CPU"

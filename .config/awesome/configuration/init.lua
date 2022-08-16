@@ -1,0 +1,6 @@
+require(... .. ".rules")
+require(... .. ".keys")
+require(... .. ".desktop")
+require(... .. ".signals")
+require(... .. ".apps")
+require(... .. ".tags")

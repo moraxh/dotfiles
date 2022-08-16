@@ -1,0 +1,127 @@
+env:
+  TERM: alacritty
+
+window:
+  # Window dimensions (changes require restart)
+  dimensions:
+    columns: 80
+    lines: 20
+
+  padding:
+    x: 10
+    y: 10
+
+  decorations: none
+
+  opacity: 0.9
+
+# Font configuration
+font:
+  # Normal (roman) font face
+  normal:
+    family: 'Fira Code Nerd Font'
+    style: Regular
+
+  # Bold font face
+  bold:
+    family: 'Fira Code Nerd Font'
+    style: Bold
+
+  # Italic font face
+  italic:
+    family: 'Fira Code Nerd Font'
+    style: Italic
+
+  # Point size
+  size: 10
+
+  offset:
+    x: 0
+    y: 0
+
+draw_bold_text_with_bright_colors: true
+
+# Colorscheme Material Ocean
+colors:
+  # Default colors
+  primary:
+    background: '#0F111A'
+    foreground: '#FFFFFF' 
+
+  # Selection colors
+  selection:
+    text: '#090B10'
+    background: '#EEFFFF'
+
+  # Normal colors
+  normal:
+    black:   '#00010A'
+    red:     '#F07178'
+    green:   '#C3E88D'
+    yellow:  '#FFCB6B'
+    blue:    '#82AAFF'
+    magenta: '#C792EA'
+    cyan:    '#82DDFF'
+    white:   '#EEFFFF'
+
+  # Bright colors
+  bright:
+    black:   '#00010A'
+    red:     '#F07178'
+    green:   '#C3E88D'
+    yellow:  '#FFCB6B'
+    blue:    '#82AAFF'
+    magenta: '#C792EA'
+    cyan:    '#82DDFF'
+    white:   '#EEFFFF'
+
+  transparent_background_colors: true
+
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: false
+
+cursor:
+  # Cursor style
+  style:
+    # Cursor shape
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    shape: Beam
+
+    blinking: Always
+  
+  blink_interval: 500
+
+live_config_reload: true
+
+mouse:
+  # Click settings
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+
+  hide_when_typing: true
+
+# Mouse bindings
+mouse_bindings:
+  - { mouse: Right,                 action: ExpandSelection }
+  - { mouse: Right,  mods: Control, action: ExpandSelection }
+  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
+
+# Key bindings
+key_bindings:
+  # (Windows, Linux, and BSD only)
+  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: C,              mods: Control|Shift,                   action: Copy             }
+  - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
+  - { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
+  - { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
+  - { key: Insert,         mods: Shift,                           action: PasteSelection   }
+  - { key: Key0,           mods: Control,                         action: ResetFontSize    }
+  - { key: Plus,           mods: Control,                         action: IncreaseFontSize }
+  - { key: Minus,          mods: Control,                         action: DecreaseFontSize }
