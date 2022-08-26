@@ -1,2 +1,3 @@
 # Set keyboard layout(Programmer dvorak)
 setxkbmap -layout us -variant dvp
+
