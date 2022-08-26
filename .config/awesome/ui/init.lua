@@ -1,8 +1,8 @@
 local awful = require("awful")
 
-local top_panel = require(... .. ".panels.top_panel")
+local bottom_panel = require(... .. ".panels.bottom_panel")
 
 awful.screen.connect_for_each_screen(function(s) 
-	top_panel (s)
+	bottom_panel(s)
 end) 
 
