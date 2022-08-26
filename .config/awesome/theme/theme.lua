@@ -1,34 +1,61 @@
----------------------------
--- Default awesome theme --
----------------------------
-
-local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
-local gfs = require("gears.filesystem")
-local themes_path = gfs.get_themes_dir()
+local gears = require("gears")
 
 local theme = {}
 
-theme.font          = "CaskaydiaCove Nerd Font 10"
+theme.wallpaper 	= "~/Pictures/Wallpapers/Wallp1.jpg"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+theme.font 			= "Chillax 11"
+theme.icon_font 	= "Font Awesome 6 Free solid 7"
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+--   _____     __           
+--  / ___/__  / /__  _______
+-- / /__/ _ \/ / _ \/ __(_-<
+-- \___/\___/_/\___/_/ /___/                         
+
+-- Using mocha colorscheme from cattpuccin
+-- https://github.com/catppuccin/catppuccin
+
+theme.transparent   = "#00000000"
+
+theme.black   	    = "#45475A" 
+theme.altblack      = "#585B70" 
+theme.white   	    = "#BAC2DE" 
+theme.altwhite      = "#A6ADC8" 
+
+theme.red     	    = "#F38BA8" 
+theme.green   	    = "#A6E3A1" 
+theme.yellow  	    = "#F9E2AF" 
+theme.blue    	    = "#89B4FA" 
+theme.magenta 	    = "#F5C2E7" 
+theme.cyan    	    = "#94E2D5" 
 
 theme.useless_gap   = dpi(5)
-theme.border_width  = dpi(0)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+
+theme.bg_normal 	= "#181825"
+theme.bg_alt		= "#313244"
+
+theme.tag_empty 	= "#45475A"
+theme.tag_focus 	= "#8CAAEE"
+theme.tag_normal	= "#BAC2DE"
+theme.tag_urgent 	= "#F38BA8"
+
+--  _      ___ __           
+-- | | /| / (_) /  ___ _____
+-- | |/ |/ / / _ \/ _ `/ __/
+-- |__/|__/_/_.__/\_,_/_/                             
+
+theme.wibar_height 	= dpi(30)
+theme.wibar_font   	= "Chillax medium 12"
+
+-- Taglist
+theme.taglist_icon 	= "Font Awesome 6 Free solid 7"
+theme.taglist_size  = dpi(6)
+
+-- Battery
+
 
 -- There are other variable sets
 -- overriding the default one when
@@ -52,7 +79,6 @@ theme.border_marked = "#91231c"
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 
@@ -61,62 +87,5 @@ theme.menu_width  = dpi(100)
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
--- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
-
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
-
-theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
-
-theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
-
-theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
-
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
-
-theme.wallpaper = "~/Pictures/Wallpapers/Wallp1.jpg"
-
--- You can use your own layout icons like this:
-theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
-theme.layout_fairv = themes_path.."default/layouts/fairvw.png"
-theme.layout_floating  = themes_path.."default/layouts/floatingw.png"
-theme.layout_magnifier = themes_path.."default/layouts/magnifierw.png"
-theme.layout_max = themes_path.."default/layouts/maxw.png"
-theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
-theme.layout_tilebottom = themes_path.."default/layouts/tilebottomw.png"
-theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
-theme.layout_tile = themes_path.."default/layouts/tilew.png"
-theme.layout_tiletop = themes_path.."default/layouts/tiletopw.png"
-theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
-theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
-theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
-theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
-theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
-
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
-)
-
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
