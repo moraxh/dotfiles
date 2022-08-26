@@ -13,4 +13,5 @@
 !.gitignore
 !.zshrc
 !.xprofile
+!.tmux.conf
 
