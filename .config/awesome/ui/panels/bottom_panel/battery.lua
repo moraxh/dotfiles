@@ -18,7 +18,8 @@ return function(s)
 			stylesheet = "* { fill: " .. beautiful.yellow .. "; stroke: " .. beautiful.bg_normal .. "; stroke-width: 300px; }",
 			forced_width = dpi(15),
 			halign = "center",
-			valign = "center"
+			valign = "center",
+			visible = false,
 		},
 		left = dpi(0.5),
 		widget = wibox.container.margin,
