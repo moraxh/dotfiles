@@ -54,7 +54,12 @@ theme.wibar_font   	= "Chillax medium 12"
 theme.taglist_icon 	= "Font Awesome 6 Free solid 7"
 theme.taglist_size  = dpi(6)
 
--- Battery
+-- Network
+theme.network_font = "Material Icons 13"
+theme.icon_no_network = ""
+theme.icon_network_low = ""
+theme.icon_network_mid = ""
+theme.icon_network_high = ""
 
 
 -- There are other variable sets
