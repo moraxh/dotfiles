@@ -32,11 +32,5 @@ return function(s)
 		end
 	end)
 
-	local widget = wibox.widget({
-		right = dpi(15),
-		widget = wibox.container.margin,
-		network,
-	})
-
-	return widget
+	return network
 end

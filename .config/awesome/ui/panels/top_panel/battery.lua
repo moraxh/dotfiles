@@ -7,8 +7,6 @@ local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
-
-
 return function(s) 
 	
 	local charging_icon = wibox.widget({
@@ -19,18 +17,11 @@ return function(s)
 			forced_width = dpi(15),
 			halign = "center",
 			valign = "center",
-			visible = false,
 		},
 		left = dpi(0.5),
+		visible = false,
 		widget = wibox.container.margin,
 	})	
-
-	-- Show battery percentage
-	local battery_percentage = wibox.widget({
-		widget = wibox.widget.textbox,
-		markup = utilities.ui.format("50%", beautiful.white, false, nil),
-		font   = beautiful.wibar_font,
-	})
 
 	-- Show bar with rounded shape
 	local battery_bar = wibox.widget({
@@ -38,7 +29,7 @@ return function(s)
 		max_value = 100, 
 		value = 50,
 		forced_width = dpi(20),
-		forced_height = dpi(12),
+		forced_height = dpi(11),
 		border_width = dpi(1),
 		background_color = beautiful.transparent,
 		color = beautiful.blue, 
@@ -58,35 +49,31 @@ return function(s)
 	})
 
 	local battery = wibox.widget({
-		{ -- Battery with percentage
-			{ -- Battery decoration
-				-- Battery bar
-				{
-					battery_bar,
-					valign = "center",
-					widget = wibox.container.place,
-				},	
-				{
-					charging_icon,
-					valign = "center",
-					widget = wibox.container.place,
-				},
-				layout = wibox.layout.stack,
-			},
+		{ -- Battery decoration
+			-- Battery bar
 			{
-				battery_decoration,
+				battery_bar,
+				valign = "center",
+				widget = wibox.container.place,
+			},	
+			{
+				charging_icon,
 				valign = "center",
 				widget = wibox.container.place,
 			},
-			layout = wibox.layout.fixed.horizontal,
+			layout = wibox.layout.stack,
 		},
-		battery_percentage,
-		spacing = dpi(5),
+		{
+			battery_decoration,
+			valign = "center",
+			widget = wibox.container.place,
+		},
 		layout = wibox.layout.fixed.horizontal,
 	})	
 	
 	local battery_tooltip = awful.tooltip({
 		bg = beautiful.bg_alt,
+		shape = utilities.ui.rrect(2),
 	})
 
 	battery_tooltip:add_to_object(battery)
@@ -109,19 +96,20 @@ return function(s)
 			charging_icon.visible = false
 		end
 
+		local percentage = utilities.ui.format(tostring(status[1]) .. "%", beautiful.white, false, nil) .. "\n"
+
 		-- Baterry tooltip 
 		if status[3] then 
 			if status[1] == 100 then 
-				battery_tooltip.markup = utilities.ui.format("Fully Charged", beautiful.white, nil, nil)
+				battery_tooltip.markup = percentage .. utilities.ui.format("Fully Charged", beautiful.white, nil, nil)
 			else 
-				battery_tooltip.markup = utilities.ui.format(status[2] .. " to full charge", beautiful.white, nil, nil)
+				battery_tooltip.markup = percentage .. utilities.ui.format(status[2] .. " to full charge", beautiful.white, nil, nil)
 			end
 		else 
-			battery_tooltip.markup = utilities.ui.format(status[2] .. " left", beautiful.white, nil, nil)
+			battery_tooltip.markup = percentage .. utilities.ui.format(status[2] .. " left", beautiful.white, nil, nil)
 		end
 
 		-- Battery bar and percentage
-		battery_percentage.markup = utilities.ui.format(tostring(status[1]) .. "%", beautiful.white, false, nil)
 		battery_bar.value = status[1]
 	end)
 

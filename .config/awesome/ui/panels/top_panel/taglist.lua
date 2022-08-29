@@ -46,7 +46,7 @@ return function(s)
 						self.tag_width(1)
 					elseif tag.selected then
 						self.widget.children[1].bg = beautiful.tag_focus
-						self.tag_width(10)
+						self.tag_width(4)
 					elseif #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_empty
 						self.tag_width(1)
@@ -61,7 +61,7 @@ return function(s)
 						self.tag_width(1)
 					elseif tag.selected then
 						self.widget.children[1].bg = beautiful.tag_focus
-						self.tag_width(10)
+						self.tag_width(4)
 					elseif #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_empty
 						self.tag_width(1)
@@ -84,9 +84,11 @@ return function(s)
 			taglist,
 			widget = wibox.container.place,
 		},
-		forced_height = beautiful.wibar_height * 0.75,
-		forced_width = dpi(230),
-		bg = beautiful.bg_alt,
+		forced_height = beautiful.wibar_height,
+		forced_width = dpi(240),
+		border_width = beautiful.wibar_border,
+		border_color = beautiful.bg_alt,
+		bg = beautiful.bg_normal,
 		shape = gears.shape.rounded_bar,
 	})
 

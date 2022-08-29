@@ -18,9 +18,7 @@ return function(s)
 		font = beautiful.wibar_font,
 	})
 
-	local widget = wibox.container.margin(clock, dpi(10))
-
-	return widget
+	return clock
 end
 
 
