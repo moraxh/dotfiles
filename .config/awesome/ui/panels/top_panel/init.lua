@@ -19,61 +19,56 @@ return function(s)
 	---------
 	-- Bar	
 	s.bar = awful.wibar({ 
-		bg = beautiful.transparent,
-		position = "top", 
-		margins = { top = beautiful.useless_gap, bottom = 0 },
+		bg = beautiful.bg_normal,
+		position = "bottom", 
 	})
 
 	s.bar:setup {
 		{
 			-- Left
 			{
-				{
-					{
-						clock,
-						layout = wibox.layout.fixed.horizontal,
-						spacing = beautiful.wibar_spacing,
-					},
-					widget = wibox.container.margin,
-					margins = { left = beautiful.wibar_spacing, right = beautiful.wibar_spacing }
-				},
-				widget = wibox.container.background,
-				forced_height = beautiful.wibar_height,
-				bg = beautiful.bg_normal,
-				border_width = beautiful.wibar_border,
-				border_color = beautiful.bg_alt,
-				shape = gears.shape.rounded_bar,
+				nil,
+				layout = wibox.layout.fixed.horizontal,
+				spacing = beautiful.wibar_spacing,
 			},
 			-- Middle
 			{
 				taglist,
 				widget = wibox.container.place,
-				valign = "center",
+				halign = "center",
 			},
 			-- Right
 			{
 				{
 					{
-						network,
-						battery,
-						layout = wibox.layout.fixed.horizontal,
-						spacing = beautiful.wibar_spacing,
-					},
-					widget = wibox.container.margin,
-					margins = { left = beautiful.wibar_spacing, right = beautiful.wibar_spacing }
+						{
+							{
+							network,
+							battery,
+							layout = wibox.layout.fixed.horizontal,
+							spacing = beautiful.wibar_spacing,
+							},
+							widget = wibox.container.margin,
+							left = beautiful.wibar_spacing,
+							right = beautiful.wibar_spacing,
+						},
+						widget = wibox.container.background,
+						forced_height = beautiful.wibar_height * 0.75,
+						bg = beautiful.bg_alt,
+						shape = gears.shape.rounded_bar,
+						},
+					widget = wibox.container.place,
 				},
-				widget = wibox.container.background,
-				forced_height = beautiful.wibar_height,
-				bg = beautiful.bg_normal,
-				border_width = beautiful.wibar_border,
-				border_color = beautiful.bg_alt,
-				shape = gears.shape.rounded_bar,
+				clock,
+				layout = wibox.layout.fixed.horizontal,
+				spacing = beautiful.wibar_spacing,
 			},
 			layout = wibox.layout.align.horizontal,
+			expand = "none",
 		},
 		widget = wibox.container.margin,
-		left = beautiful.wibar_gap,
-		right = beautiful.wibar_gap,
+		left = beautiful.wibar_spacing,
+		right = beautiful.wibar_spacing,
 	}
 
 end

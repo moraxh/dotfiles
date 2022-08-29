@@ -54,11 +54,10 @@ theme.wibar_spacing = dpi(10)
 theme.wibar_border  = dpi(2)
 
 -- Taglist
-theme.taglist_icon 	= "Font Awesome 6 Free solid 7"
 theme.taglist_size  = dpi(6)
 
 -- Network
-theme.network_font = "Material Icons 13"
+theme.network_font = "Material Icons 12"
 theme.icon_no_network = ""
 theme.icon_network_low = ""
 theme.icon_network_mid = ""

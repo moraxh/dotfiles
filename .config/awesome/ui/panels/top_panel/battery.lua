@@ -29,7 +29,7 @@ return function(s)
 		max_value = 100, 
 		value = 50,
 		forced_width = dpi(20),
-		forced_height = dpi(11),
+		forced_height = dpi(10.5),
 		border_width = dpi(1),
 		background_color = beautiful.transparent,
 		color = beautiful.blue, 
@@ -74,6 +74,8 @@ return function(s)
 	local battery_tooltip = awful.tooltip({
 		bg = beautiful.bg_alt,
 		shape = utilities.ui.rrect(2),
+		mode = "outside",
+		preferred_alignments = "middle",
 	})
 
 	battery_tooltip:add_to_object(battery)
