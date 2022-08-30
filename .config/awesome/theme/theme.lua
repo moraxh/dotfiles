@@ -9,6 +9,7 @@ theme.wallpaper 	= "~/Pictures/Wallpapers/Wallp1.jpg"
 
 theme.font 			= "Chillax 11"
 theme.icon_font 	= "Font Awesome 6 Free solid 7"
+theme.icon_font_alt = "FiraCode Nerd Font Mono"
 
 --   _____     __           
 --  / ___/__  / /__  _______
@@ -47,11 +48,12 @@ theme.tag_urgent 	= "#F38BA8"
 -- | |/ |/ / / _ \/ _ `/ __/
 -- |__/|__/_/_.__/\_,_/_/                             
 
-theme.wibar_height 	= dpi(28)
+theme.wibar_height 	= dpi(30)
 theme.wibar_font   	= "Chillax medium 12"
 theme.wibar_gap		= dpi(5)
 theme.wibar_spacing = dpi(10)
 theme.wibar_border  = dpi(2)
+theme.widget_height = theme.wibar_height * 0.7
 
 -- Taglist
 theme.taglist_size  = dpi(6)

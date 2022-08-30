@@ -84,7 +84,7 @@ return function(s)
 			taglist,
 			widget = wibox.container.place,
 		},
-		forced_height = beautiful.wibar_height * 0.75,
+		forced_height = beautiful.widget_height,
 		forced_width = dpi(240),
 		bg = beautiful.bg_alt,
 		shape = gears.shape.rounded_bar,

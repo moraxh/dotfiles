@@ -11,10 +11,11 @@ return function(s)
 
 	----------
 	-- Widgets
-	clock = require("ui.panels.top_panel.clock")()
-	battery = require("ui.panels.top_panel.battery")() 
-	network = require("ui.panels.top_panel.network")()
-	taglist = require("ui.panels.top_panel.taglist")(s)
+	clock = require("ui.panels.bottom_panel.clock")()
+	battery = require("ui.panels.bottom_panel.battery")() 
+	network = require("ui.panels.bottom_panel.network")()
+	taglist = require("ui.panels.bottom_panel.taglist")(s)
+	menu = require("ui.panels.bottom_panel.menu")()
 
 	---------
 	-- Bar	
@@ -27,7 +28,7 @@ return function(s)
 		{
 			-- Left
 			{
-				nil,
+				menu,
 				layout = wibox.layout.fixed.horizontal,
 				spacing = beautiful.wibar_spacing,
 			},
@@ -53,9 +54,9 @@ return function(s)
 							right = beautiful.wibar_spacing,
 						},
 						widget = wibox.container.background,
-						forced_height = beautiful.wibar_height * 0.75,
+						forced_height = beautiful.widget_height,
 						bg = beautiful.bg_alt,
-						shape = gears.shape.rounded_bar,
+						shape = utilities.ui.rrect(5),
 						},
 					widget = wibox.container.place,
 				},
