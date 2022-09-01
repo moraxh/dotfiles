@@ -1,13 +1,13 @@
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local utilities = require("utilities")
+local animation = require("lib.rubato")
 
 local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
 
-local naughty = require("naughty")
 return function(s)
 
 	local taglist_buttons = gears.table.join({
@@ -34,46 +34,51 @@ return function(s)
 						valign = "center",
 					})
 
-					function self.tag_width(pos) 
-						tag_indicator.children[1].forced_width = beautiful.taglist_size * pos
-					end
+					self.tag_animator = animation.timed {
+						outro = 0.1,
+						duration = 0.3,
+						pos = beautiful.taglist_size,
+						easing = animation.quadratic,
+						subscribed = function(pos) 
+							tag_indicator.children[1].forced_width = beautiful.taglist_size * pos
+						end
+					}
 
 					self:set_widget(tag_indicator)
 
-
 					if tag.selected and #tag:clients() == 0 then 
 						self.widget.children[1].bg = beautiful.tag_focus
-						self.tag_width(1)
+						self.tag_animator.target = 1
 					elseif tag.selected then
 						self.widget.children[1].bg = beautiful.tag_focus
-						self.tag_width(4)
+						self.tag_animator.target = 4
 					elseif #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_empty
-						self.tag_width(1)
+						self.tag_animator.target = 1
 					else 
 						self.widget.children[1].bg = beautiful.tag_normal
-						self.tag_width(2)
+						self.tag_animator.target = 2
 					end
 				end,
 				update_callback = function(self, tag)
 					if tag.selected and #tag:clients() == 0 then 
 						self.widget.children[1].bg = beautiful.tag_focus
-						self.tag_width(1)
+						self.tag_animator.target = 1
 					elseif tag.selected then
 						self.widget.children[1].bg = beautiful.tag_focus
-						self.tag_width(4)
+						self.tag_animator.target = 4
 					elseif #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_empty
-						self.tag_width(1)
+						self.tag_animator.target = 1
 					else 
 						self.widget.children[1].bg = beautiful.tag_normal
-						self.tag_width(2)
+						self.tag_animator.target = 2
 					end
 				end
 			},
 		style = {
 			font = beautiful.taglist_icon,
-			spacing = dpi(10),
+			spacing = dpi(12),
 		},
 		buttons = taglist_buttons
 	})
@@ -85,7 +90,7 @@ return function(s)
 			widget = wibox.container.place,
 		},
 		forced_height = beautiful.widget_height,
-		forced_width = dpi(240),
+		forced_width = dpi(260),
 		bg = beautiful.bg_alt,
 		shape = gears.shape.rounded_bar,
 	})

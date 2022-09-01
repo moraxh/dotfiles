@@ -9,6 +9,12 @@ function _ui.rrect(radius)
 	end
 end
 
+function _ui.prrect(tl, tr, br, bl, radius) 
+	return function (cr, width, height)
+		gears.shape.partially_rounded_rect (cr, width, height, tl, tr, br, bl, radius)
+	end
+end
+
 function _ui.format(text, color, bold, size)
 	if size ~= nil then 
 		if bold == true then

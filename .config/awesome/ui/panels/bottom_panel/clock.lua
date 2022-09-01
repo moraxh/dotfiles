@@ -3,6 +3,7 @@ local dpi = xresources.apply_dpi
 local utilities = require("utilities")
 
 local wibox = require("wibox")
+local awful = require("awful")
 local beautiful = require("beautiful")
 
 ---------------

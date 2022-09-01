@@ -11,6 +11,7 @@
 !.config/macchina
 
 !.gitignore
+!.gitmodules
 !.zshrc
 !.xprofile
 !.tmux.conf
