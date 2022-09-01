@@ -35,7 +35,7 @@ theme.cyan    	    = "#94E2D5"
 
 theme.useless_gap   = dpi(5)
 
-theme.bg_normal 	= "#181825"
+theme.bg_normal 	= "#11111b"
 theme.bg_alt		= "#313244"
 
 theme.tag_empty 	= "#45475A"
