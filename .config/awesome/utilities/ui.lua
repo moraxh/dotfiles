@@ -15,6 +15,12 @@ function _ui.prrect(tl, tr, br, bl, radius)
 	end
 end
 
+function _ui.squircle(rate)
+	return function(cr, width, height, delta)
+		gears.shape.squircle (cr, width, height, rate, delta)
+	end
+end
+
 function _ui.format(text, color, bold, size)
 	if size ~= nil then 
 		if bold == true then
