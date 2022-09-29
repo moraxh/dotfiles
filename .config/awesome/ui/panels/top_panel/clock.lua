@@ -1,16 +1,14 @@
 local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
 local utilities = require("utilities")
 
 local wibox = require("wibox")
-local awful = require("awful")
 local beautiful = require("beautiful")
 
 ---------------
 -- Clock widget 
 
 return function(s)
-	local clock = wibox.widget({
+	clock = wibox.widget({
 		format = utilities.ui.format("%I %M", beautiful.white, false, nil),
 		timezone = 'America/Mexico_City',
     	widget = wibox.widget.textclock,
@@ -18,7 +16,7 @@ return function(s)
 		screen = s,
 		font = beautiful.wibar_font,
 	})
-
+	
 	return clock
 end
 

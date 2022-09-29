@@ -91,7 +91,9 @@ return function(s)
 		},
 		forced_height = beautiful.widget_height,
 		forced_width = dpi(260),
-		bg = beautiful.bg_alt,
+		bg = beautiful.bg_normal,
+		border_color = beautiful.bg_alt,
+		border_width = beautiful.wibar_border,
 		shape = gears.shape.rounded_bar,
 	})
 

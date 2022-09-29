@@ -5,7 +5,7 @@ local gears = require("gears")
 
 local theme = {}
 
-theme.wallpaper 	= "~/Pictures/Wallpapers/Wallp1.jpg"
+theme.wallpaper 	= "~/Pictures/Wallpapers/Wall1.jpg"
 
 theme.font 			= "Chillax 11"
 theme.icon_font 	= "Font Awesome 6 Free solid 7"
@@ -37,6 +37,7 @@ theme.useless_gap   = dpi(5)
 
 theme.bg_normal 	= "#11111b"
 theme.bg_alt		= "#313244"
+theme.bg_alt2 		= "#1e1e2e"
 
 theme.tag_empty 	= "#45475A"
 theme.tag_focus 	= "#8CAAEE"
@@ -53,7 +54,7 @@ theme.wibar_font   	= "Chillax medium 12"
 theme.wibar_gap		= dpi(5)
 theme.wibar_spacing = dpi(10)
 theme.wibar_border  = dpi(2)
-theme.widget_height = theme.wibar_height * 0.7
+theme.widget_height = theme.wibar_height
 
 -- Taglist
 theme.taglist_size  = dpi(6)

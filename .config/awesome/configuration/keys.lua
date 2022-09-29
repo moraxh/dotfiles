@@ -97,7 +97,7 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ }, "XF86AudioMute", function() 
 		awful.spawn("amixer -q -D default set Master toggle")
 	end, {description = "Toggle mute", group = "Awesome"}),
-	
+
 })
 
 -- Client bindings
