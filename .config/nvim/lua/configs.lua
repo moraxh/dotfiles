@@ -38,7 +38,7 @@ set.sidescrolloff   = 10                        -- Keep 30 columns visible left 
 set.backspace       = 'indent,start,eol'        -- Make backspace behave like normal again
 set.completeopt     = 'menu,menuone,noselect'   -- Better auto complete menu
 
---cmd('colorscheme catppuccin')                     -- Load colorscheme
+cmd('colorscheme catppuccin')                     -- Load colorscheme
 cmd('filetype plugin indent on')                -- Allow auto-indenting depending on file type
 cmd('syntax on') 			                    -- Syntax highlighting
 
