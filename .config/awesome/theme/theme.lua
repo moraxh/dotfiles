@@ -49,11 +49,10 @@ theme.tag_urgent 	= "#F38BA8"
 -- | |/ |/ / / _ \/ _ `/ __/
 -- |__/|__/_/_.__/\_,_/_/
 
-theme.wibar_height 	= dpi(30)
-theme.wibar_font   	= "Chillax medium 12"
+theme.wibar_height 	= dpi(40)
+theme.wibar_font   	= "Chillax medium 14"
 theme.wibar_gap		= dpi(5)
-theme.wibar_spacing = dpi(10)
-theme.wibar_border  = dpi(2)
+theme.wibar_spacing = dpi(15)
 theme.widget_height = theme.wibar_height
 
 -- Taglist

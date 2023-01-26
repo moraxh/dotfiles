@@ -11,7 +11,7 @@ local gears = require("gears")
 return function(s)
 
 	local taglist_buttons = gears.table.join({
-		awful.button({}, 1, function(t) 
+		awful.button({}, 1, function(t)
 			t:view_only()
 		end)
 	})
@@ -39,14 +39,14 @@ return function(s)
 						duration = 0.3,
 						pos = beautiful.taglist_size,
 						easing = animation.quadratic,
-						subscribed = function(pos) 
+						subscribed = function(pos)
 							tag_indicator.children[1].forced_width = beautiful.taglist_size * pos
 						end
 					}
 
 					self:set_widget(tag_indicator)
 
-					if tag.selected and #tag:clients() == 0 then 
+					if tag.selected and #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_focus
 						self.tag_animator.target = 1
 					elseif tag.selected then
@@ -55,13 +55,13 @@ return function(s)
 					elseif #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_empty
 						self.tag_animator.target = 1
-					else 
+					else
 						self.widget.children[1].bg = beautiful.tag_normal
 						self.tag_animator.target = 2
 					end
 				end,
 				update_callback = function(self, tag)
-					if tag.selected and #tag:clients() == 0 then 
+					if tag.selected and #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_focus
 						self.tag_animator.target = 1
 					elseif tag.selected then
@@ -70,7 +70,7 @@ return function(s)
 					elseif #tag:clients() == 0 then
 						self.widget.children[1].bg = beautiful.tag_empty
 						self.tag_animator.target = 1
-					else 
+					else
 						self.widget.children[1].bg = beautiful.tag_normal
 						self.tag_animator.target = 2
 					end
@@ -84,17 +84,20 @@ return function(s)
 	})
 
 	local widget = wibox.widget({
-		widget = wibox.container.background,
-		{
-			taglist,
-			widget = wibox.container.place,
-		},
-		forced_height = beautiful.widget_height,
-		forced_width = dpi(260),
-		bg = beautiful.bg_normal,
-		border_color = beautiful.bg_alt,
-		border_width = beautiful.wibar_border,
-		shape = gears.shape.rounded_bar,
+        {
+            widget = wibox.container.background,
+            {
+                taglist,
+                widget = wibox.container.place,
+            },
+            forced_height = beautiful.widget_height * 0.7,
+            forced_width = dpi(260),
+            bg = beautiful.bg_alt2,
+            shape = gears.shape.rounded_bar,
+        },
+        widget = wibox.container.place,
+        valign = "center",
+        halign = "center"
 	})
 
 	return widget

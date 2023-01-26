@@ -11,20 +11,27 @@ return function(s)
 
 	----------
 	-- Widgets
-	
+
 	local widget_dir = "ui.panels.top_panel"
 	clock = require(widget_dir .. ".clock")()
-	battery = require(widget_dir .. ".battery")() 
+	battery = require(widget_dir .. ".battery")()
 	network = require(widget_dir .. ".network")()
 	taglist = require(widget_dir .. ".taglist")(s)
 	menu = require(widget_dir .. ".menu")()
 	window = require(widget_dir .. ".window")()
 
 	---------
-	-- Bar	
-	s.bar = awful.wibar({ 
-		bg = beautiful.transparent,
-		position = "top", 
+	-- Bar
+	s.bar = awful.wibar({
+		bg = beautiful.bg_normal,
+		position = "top",
+        margins = {
+            left = dpi(10),
+            right = dpi(10),
+            top = dpi(10),
+            bottom = dpi(0)
+        },
+        shape = gears.shape.rounded_bar,
 	})
 
 	s.bar:setup {
@@ -32,44 +39,24 @@ return function(s)
 			-- Left
 			{
 				menu,
-				window,
+                taglist,
 				layout = wibox.layout.fixed.horizontal,
-				spacing = beautiful.wibar_spacing,
+				spacing = beautiful.wibar_spacing * 0.7,
 			},
 			-- Middle
 			{
-				taglist,
+				window,
 				widget = wibox.container.place,
 				halign = "center",
 			},
 			-- Right
 			{
 				{
-					{
-						{
-							{
-							network,
-							battery,
-							widget = wibox.layout.fixed.horizontal,
-							spacing = beautiful.wibar_spacing,
-							},
-							widget = wibox.container.margin,
-							left = beautiful.wibar_gap * 2.5,
-							right = beautiful.wibar_gap * 2.5,
-						},
-						widget = wibox.container.background,
-						forced_height = beautiful.widget_height,
-						bg = beautiful.bg_normal,
-						border_color = beautiful.bg_alt,
-						border_width = beautiful.wibar_border,
-						shape = gears.shape.rounded_bar,
-					},
-					{
-							clock,
-							widget = wibox.layout.fixed.horizontal,
-					},
+                    battery,
+                    network,
+                    clock,
 					widget = wibox.layout.fixed.horizontal,
-					spacing = beautiful.wibar_spacing,
+					spacing = beautiful.wibar_spacing * 0.7,
 				},
 				widget = wibox.container.place,
 			},
@@ -79,8 +66,6 @@ return function(s)
 		widget = wibox.container.margin,
 		left = beautiful.wibar_spacing,
 		right = beautiful.wibar_spacing,
-		top = beautiful.wibar_gap / 2,
-		bottom = beautiful.wibar_gap / 2,
 	}
 
 end
