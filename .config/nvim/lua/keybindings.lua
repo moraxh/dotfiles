@@ -73,7 +73,7 @@ map('n', '<leader>k', ':m .-2<CR>==')
 map('n', '<leader>j', ':m .+1<CR>==')
 
 -- Exit insert mode without using <ESC>
-map('i', 'cc', '<ESC>')
+-- map('i', 'cc', '<ESC>')
 
 -- Move faster
 map('n', '<C-j>', ':+10<CR>')
