@@ -82,5 +82,5 @@ map('n', '<C-k>', ':-10<CR>')
 
 -- Resize window
 -- FIX Ctrl-r redo
---map('n', '<C-r>', ':vertical-resize +5<CR>', { noremap = false})
+-- map('n', '<C-r>', ':vertical-resize +5<CR>', { noremap = false})
 map('n', '<C-l>', ':vertical-resize -5<CR>', { noremap = false })
