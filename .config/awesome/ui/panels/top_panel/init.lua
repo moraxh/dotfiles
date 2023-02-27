@@ -20,6 +20,14 @@ return function(s)
 	menu = require(widget_dir .. ".menu")()
 	window = require(widget_dir .. ".window")()
 
+    separator = wibox.widget({
+        font = beautiful.wibar_font,
+        markup = utilities.ui.format("|", beautiful.bg_alt, nil, 13),
+        halign = "center",
+        valign = "middle",
+        widget = wibox.widget.textbox,
+    })
+
 	---------
 	-- Bar
 	s.bar = awful.wibar({
@@ -39,6 +47,7 @@ return function(s)
 			-- Left
 			{
 				menu,
+                separator,
                 taglist,
 				layout = wibox.layout.fixed.horizontal,
 				spacing = beautiful.wibar_spacing * 0.7,
@@ -54,6 +63,7 @@ return function(s)
 				{
                     battery,
                     network,
+                    separator,
                     clock,
 					widget = wibox.layout.fixed.horizontal,
 					spacing = beautiful.wibar_spacing * 0.7,

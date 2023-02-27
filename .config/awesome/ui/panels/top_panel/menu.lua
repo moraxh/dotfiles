@@ -12,14 +12,13 @@ return function(s)
 		{
 			{
 				widget = wibox.widget.textbox,
-				markup = utilities.ui.format("", beautiful.cyan, nil, 21),
+				markup = utilities.ui.format("", beautiful.cyan, nil, 25),
 				font = beautiful.icon_font,
 				valign = "center",
 				align = "center",
 			},
 			widget = wibox.container.margin,
 			left = beautiful.wibar_gap * 2,
-			right = beautiful.wibar_gap * 2,
 		},
 		widget = wibox.container.place,
 		valign = "center",
