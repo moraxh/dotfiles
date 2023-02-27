@@ -3,8 +3,6 @@ local awful = require("awful")
 
 local network = {}
 
-local naughty = require("naughty")
-
 exit = nil
 level = nil
 
