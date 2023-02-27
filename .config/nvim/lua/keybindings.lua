@@ -8,6 +8,7 @@ vim.g.mapleader = " "
 
 -- Telescope
 map('n', '<leader>f', ':Telescope find_files cwd=~/ hidden=true<CR>')
+map('n', "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
 -- Easymotion
 map('n', '<leader>s', '<Plug>(easymotion-s2)', {noremap = false})

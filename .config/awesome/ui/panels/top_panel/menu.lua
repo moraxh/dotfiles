@@ -13,7 +13,7 @@ return function(s)
 			{
 				widget = wibox.widget.textbox,
 				markup = utilities.ui.format("", beautiful.cyan, nil, 21),
-				font = beautiful.icon_font_alt,	
+				font = beautiful.icon_font,
 				valign = "center",
 				align = "center",
 			},

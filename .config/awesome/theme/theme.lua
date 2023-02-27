@@ -5,11 +5,10 @@ local gears = require("gears")
 
 local theme = {}
 
-theme.wallpaper 	= gears.filesystem.get_configuration_dir() .. "/theme/Wallpaper.jpg"
+theme.wallpaper 	= gears.filesystem.get_configuration_dir() .. "/theme/assets/Wallpapers/Wallpaper2.png"
 
 theme.font 			= "Chillax 11"
-theme.icon_font 	= "Font Awesome 6 Free solid 7"
-theme.icon_font_alt = "FiraCode Nerd Font Mono"
+theme.icon_font     = "FiraCode Nerd Font Mono"
 
 --   _____     __
 --  / ___/__  / /__  _______
@@ -59,10 +58,10 @@ theme.widget_height = theme.wibar_height
 theme.taglist_size  = dpi(6)
 
 -- Network
-theme.network_font = "Material Icons 12"
-theme.icon_no_network = ""
-theme.icon_network_low = ""
-theme.icon_network_mid = ""
-theme.icon_network_high = ""
+theme.network_font = "FiraCode Nerd Font Mono 24"
+theme.icon_no_network = "󰤮"
+theme.icon_network_low = "󰤟"
+theme.icon_network_mid = "󰤢"
+theme.icon_network_high = "󰤨"
 
 return theme
