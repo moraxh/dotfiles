@@ -8,11 +8,11 @@ local beautiful = require("beautiful")
 local awful = require("awful")
 
 return function(s)
-	local menu = wibox.widget({
+	menu = wibox.widget({
 		{
 			{
 				widget = wibox.widget.textbox,
-				markup = utilities.ui.format("", beautiful.cyan, nil, 25),
+				markup = utilities.ui.format(beautiful.menu_icon, beautiful.cyan, nil, 25),
 				font = beautiful.icon_font,
 				valign = "center",
 				align = "center",
@@ -24,6 +24,21 @@ return function(s)
 		valign = "center",
 		halign = "center",
 	})
+
+    menu:connect_signal("mouse::enter", function()
+        local wibox = mouse.current_wibox
+        old_cursor, old_wibox = wibox.cursor, wibox
+        wibox.cursor = "hand2"
+    end)
+
+    menu:connect_signal("mouse::leave", function()
+        if old_wibox then
+            old_wibox.cursor = old_cursor
+            old_wibox = nil
+        end
+    end)
+
+    menu:connect_signal("button::press", function() awesome.emit_signal("signal:menu_toggle") end)
 
 	return menu
 end
