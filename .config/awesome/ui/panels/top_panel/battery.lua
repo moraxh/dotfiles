@@ -82,7 +82,7 @@ return function(s)
 
 	-- status = { percentage(int), time_left(string), is_pluged(bool) }
 	awesome.connect_signal("signal:battery", function(status)
-
+-- FIX
 		-- Battery bg color
 		if status[1] > 30 then
 			battery_bar.color = beautiful.blue
