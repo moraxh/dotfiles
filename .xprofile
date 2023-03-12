@@ -1,5 +1,6 @@
 # Set keyboard layout(Programmer dvorak)
 setxkbmap -layout us -variant dvp
 
-picom --experimental-backends &    
+picom &
 
+exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
