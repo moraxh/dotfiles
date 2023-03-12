@@ -34,9 +34,9 @@ return function(s)
 		bg = beautiful.bg_normal,
 		position = "top",
         margins = {
-            left = dpi(10),
-            right = dpi(10),
-            top = dpi(10),
+            left = beautiful.useless_gap * 2,
+            right = beautiful.useless_gap * 2,
+            top = beautiful.useless_gap * 2,
             bottom = dpi(0)
         },
         shape = gears.shape.rounded_bar,

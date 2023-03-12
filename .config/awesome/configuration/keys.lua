@@ -75,8 +75,8 @@ awful.keyboard.append_global_keybindings({
                           end
                      end
 	end}),
+    -- Brightness
 
-	-- Brightness
 	awful.key({ }, "XF86MonBrightnessUp", function()
 		awful.spawn("brightnessctl s +10% -q")
 	end, {description = "Brightness up", group = "Awesome"}),
@@ -96,6 +96,12 @@ awful.keyboard.append_global_keybindings({
 
 	awful.key({ }, "XF86AudioMute", function()
 		awful.spawn("amixer -q -D default set Master toggle")
+	end, {description = "Toggle mute", group = "Awesome"}),
+
+
+    -- Custom keys
+	awful.key({ mod }, "Escape", function()
+        awesome.emit_signal("signal:menu_toggle")
 	end, {description = "Toggle mute", group = "Awesome"}),
 
 })

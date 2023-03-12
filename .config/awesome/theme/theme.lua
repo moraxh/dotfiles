@@ -64,4 +64,21 @@ theme.icon_network_low = "󰤟"
 theme.icon_network_mid = "󰤢"
 theme.icon_network_high = "󰤨"
 
+--   ________          __
+--  / ___/ (_)__ ___  / /____
+-- / /__/ / / -_) _ \/ __(_-<
+-- \___/_/_/\__/_//_/\__/___/
+
+theme.border_width = dpi(0)
+
+--    __  ___
+--   /  |/  /__ ___  __ _____
+--  / /|_/ / -_) _ \/ // (_-<
+-- /_/  /_/\__/_//_/\_,_/___/
+theme.menu_icon = ""
+
+theme.menu_session_font = "Chillax medium 13"
+theme.menu_session_power_font = "FiraCode Nerd Font Mono 30"
+theme.menu_session_power = ""
+
 return theme
