@@ -34,6 +34,8 @@ return function(s)
 						valign = "center",
 					})
 
+                    utilities.ui.add_hover(tag_indicator, "hand2")
+
 					self.tag_animator = animation.timed {
 						outro = 0.1,
 						duration = 0.3,
