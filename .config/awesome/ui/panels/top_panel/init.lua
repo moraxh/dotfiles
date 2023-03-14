@@ -22,7 +22,7 @@ return function(s)
 
     separator = wibox.widget({
         font = beautiful.wibar_font,
-        markup = utilities.ui.format("|", beautiful.bg_alt, nil, 13),
+        markup = utilities.text.format("|", beautiful.bg_alt, nil, 13),
         halign = "center",
         valign = "middle",
         widget = wibox.widget.textbox,

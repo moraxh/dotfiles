@@ -34,8 +34,8 @@ return function(s)
 		background_color = beautiful.transparent,
 		color = beautiful.blue,
 		border_color = beautiful.white,
-		shape = utilities.ui.rrect(2),
-		bar_shape = utilities.ui.rrect(1),
+		shape = utilities.shapes.rrect(2),
+		bar_shape = utilities.shapes.rrect(1),
 		paddings = dpi(1),
 	})
 
@@ -44,7 +44,7 @@ return function(s)
 			widget = wibox.container.background,
 			forced_width = dpi(2),
 			forced_height = dpi(4),
-			shape = utilities.ui.rrect(2),
+			shape = utilities.shapes.rrect(2),
 			bg = beautiful.white,
 	})
 
@@ -73,7 +73,7 @@ return function(s)
 
 	local battery_tooltip = awful.tooltip({
 		bg = beautiful.bg_alt,
-		shape = utilities.ui.rrect(2),
+		shape = utilities.shapes.rrect(2),
 		mode = "outside",
 		preferred_alignments = "middle",
 	})
@@ -82,8 +82,6 @@ return function(s)
 
 	-- status = { percentage(int), time_left(string), is_pluged(bool) }
 	awesome.connect_signal("signal:battery", function(status)
--- FIX
-		-- Battery bg color
 		if status[1] > 30 then
 			battery_bar.color = beautiful.blue
 		elseif status[1] > 10 and status[1] <= 30 then
@@ -98,17 +96,17 @@ return function(s)
 			charging_icon.visible = false
 		end
 
-		local percentage = utilities.ui.format(tostring(status[1]) .. "%", beautiful.white, false, nil) .. "\n"
+		local percentage = utilities.text.format(tostring(status[1]) .. "%", beautiful.white, false, nil) .. "\n"
 
 		-- Baterry tooltip
 		if status[3] then
 			if status[1] == 100 then
-				battery_tooltip.markup = percentage .. utilities.ui.format("Fully Charged", beautiful.white, nil, nil)
+				battery_tooltip.markup = percentage .. utilities.text.format("Fully Charged", beautiful.white, nil, nil)
 			else
-				battery_tooltip.markup = percentage .. utilities.ui.format(status[2] .. " to full charge", beautiful.white, nil, nil)
+				battery_tooltip.markup = percentage .. utilities.text.format(status[2] .. " to full charge", beautiful.white, nil, nil)
 			end
 		else
-			battery_tooltip.markup = percentage .. utilities.ui.format(status[2] .. " left", beautiful.white, nil, nil)
+			battery_tooltip.markup = percentage .. utilities.text.format(status[2] .. " left", beautiful.white, nil, nil)
 		end
 
 		-- Battery bar and percentage

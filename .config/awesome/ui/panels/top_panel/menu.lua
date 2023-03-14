@@ -12,7 +12,7 @@ return function(s)
 		{
 			{
 				widget = wibox.widget.textbox,
-				markup = utilities.ui.format(beautiful.menu_icon, beautiful.cyan, nil, 25),
+				markup = utilities.text.format(beautiful.menu_icon, beautiful.cyan, nil, 25),
 				font = beautiful.icon_font,
 				valign = "center",
 				align = "center",
@@ -25,18 +25,7 @@ return function(s)
 		halign = "center",
 	})
 
-    menu:connect_signal("mouse::enter", function()
-        local wibox = mouse.current_wibox
-        old_cursor, old_wibox = wibox.cursor, wibox
-        wibox.cursor = "hand2"
-    end)
-
-    menu:connect_signal("mouse::leave", function()
-        if old_wibox then
-            old_wibox.cursor = old_cursor
-            old_wibox = nil
-        end
-    end)
+    utilities.ui.add_hover(menu, "hand2")
 
     menu:connect_signal("button::press", function() awesome.emit_signal("signal:menu_toggle") end)
 
