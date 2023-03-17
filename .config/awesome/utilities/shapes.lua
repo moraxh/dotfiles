@@ -10,7 +10,7 @@ end
 
 function shapes.prrect(tl, tr, br, bl, radius)
 	return function (cr, width, height)
-		gears.shape.partially_rounded_rect (cr, width, height, tl, tr, br, bl, radius)
+		gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl, radius)
 	end
 end
 
