@@ -25,7 +25,7 @@ return function(s)
 		halign = "center",
 	})
 
-    utilities.ui.add_hover(menu, "hand2")
+    utilities.ui.add_hover(menu)
 
     menu:connect_signal("button::press", function() awesome.emit_signal("signal:menu_toggle") end)
 
