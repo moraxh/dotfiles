@@ -12,8 +12,8 @@ return function()
         widget = wibox.widget.imagebox,
         clip_shape = gears.shape.circle,
         resize = true,
-        forced_height = dpi(75),
-        forced_width = dpi(75),
+        forced_height = dpi(70),
+        forced_width = dpi(70),
     })
 
     if os.getenv("HOME") .. "/.face" then
@@ -32,7 +32,7 @@ return function()
     awful.spawn.easy_async_with_shell("whoami", function(stdout)
         -- Capitalize text
         stdout = stdout:gsub("^%l", string.upper)
-        user.markup = utilities.ui.format(stdout, beautiful.white, false, nil)
+        user.markup = utilities.text.format(stdout, beautiful.white, false, nil)
     end)
 
     host = wibox.widget({
@@ -43,14 +43,41 @@ return function()
     })
 
     awful.spawn.easy_async_with_shell("hostnamectl | awk 'NR==1{print $3}'", function(stdout)
-        host.markup = utilities.ui.format(stdout, beautiful.altblack, false, nil)
+        host.markup = utilities.text.format(stdout, beautiful.black_alt, false, nil)
     end)
 
-    power = wibox.widget({
-        widget = wibox.widget.textbox,
-        font = beautiful.menu_session_power_font,
-        text = beautiful.menu_session_power,
-    })
+    power = utilities.button.hover {
+        forced_width = dpi(42),
+        forced_height = dpi(42),
+        shape = gears.shape.circle,
+        margin = dpi(0),
+
+        bg = beautiful.bg_alt,
+        bg_hover = beautiful.black_alt,
+
+        font = beautiful.menu_session_icon_font,
+        markup = utilities.text.format(beautiful.menu_session_power, beautiful.white, false, 29),
+
+        action = function()
+            awesome.emit_signal("signal:menu_toggle")
+            awesome.emit_signal("signal:powermenu_toggle")
+        end,
+    }
+
+    lock = utilities.button.hover {
+        forced_width = dpi(42),
+        forced_height = dpi(42),
+        shape = gears.shape.circle,
+        margin = dpi(0),
+
+        bg = beautiful.bg_alt,
+        bg_hover = beautiful.black_alt,
+
+        font = beautiful.menu_session_icon_font,
+        markup = utilities.text.format(beautiful.menu_session_lock, beautiful.white, false, 23),
+
+        action = function() end,
+    }
 
     session = wibox.widget({
         {
@@ -70,7 +97,12 @@ return function()
                 layout = wibox.layout.flex.vertical,
             },
             {
-                power,
+                {
+                    lock,
+                    power,
+                    widget = wibox.layout.fixed.horizontal,
+                    spacing = dpi(7),
+                },
                 widget = wibox.container.place,
                 halign = "right",
             },
