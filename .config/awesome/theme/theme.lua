@@ -5,7 +5,7 @@ local gears = require("gears")
 
 local theme = {}
 
-theme.wallpaper 	= gears.filesystem.get_configuration_dir() .. "/theme/assets/Wallpapers/Wallpaper2.png"
+theme.wallpaper 	= gears.filesystem.get_configuration_dir() .. "/theme/assets/Wallpapers/Wallpaper3.png"
 
 theme.font 			= "Chillax 11"
 theme.icon_font     = "FiraCode Nerd Font Mono"
@@ -21,9 +21,9 @@ theme.icon_font     = "FiraCode Nerd Font Mono"
 theme.transparent   = "#00000000"
 
 theme.black   	    = "#45475A"
-theme.altblack      = "#585B70"
+theme.black_alt     = "#585B70"
 theme.white   	    = "#BAC2DE"
-theme.altwhite      = "#A6ADC8"
+theme.white_alt     = "#A6ADC8"
 
 theme.red     	    = "#F38BA8"
 theme.green   	    = "#A6E3A1"
@@ -35,6 +35,7 @@ theme.cyan    	    = "#94E2D5"
 theme.useless_gap   = dpi(5)
 
 theme.bg_normal 	= "#11111b"
+theme.bg_normal2    = "#181825"
 theme.bg_alt		= "#313244"
 theme.bg_alt2 		= "#1e1e2e"
 
@@ -78,7 +79,14 @@ theme.border_width = dpi(0)
 theme.menu_icon = ""
 
 theme.menu_session_font = "Chillax medium 13"
-theme.menu_session_power_font = "FiraCode Nerd Font Mono 30"
-theme.menu_session_power = ""
+theme.menu_session_icon_font = "FiraCode Nerd Font Mono"
+theme.menu_session_power = "󰐥"
+theme.menu_session_lock = "󰌾"
+
+theme.powermenu_font = "Font Awesome 6 Free"
+theme.powermenu_reboot = ""
+theme.powermenu_poweroff = ""
+theme.powermenu_logout = ""
+theme.powermenu_suspend = ""
 
 return theme
