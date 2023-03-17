@@ -2,6 +2,7 @@ local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
+local ui = require("utilities.ui")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
@@ -9,6 +10,7 @@ local _button = {}
 
 function _button.hover(args)
     args.bg = args.bg or nil
+    args.bg_hover = args.bg_hover or "#ff0000"
     args.forced_width = args.forced_width or nil
     args.forced_height = args.forced_height or nil
     args.shape = args.shape or gears.shape.circle
@@ -16,9 +18,12 @@ function _button.hover(args)
     args.margin = args.margin or dpi(10)
 
     args.text = args.text or nil
+    args.font = args.font or nil
     args.text_valign = args.text_valign or "center"
     args.text_halign = args.text_halign or "center"
     args.markup = args.markup or nil
+
+    args.action = args.action or function() end
 
     local widget = wibox.widget({
         {
@@ -26,6 +31,7 @@ function _button.hover(args)
                 {
                     markup = args.markup,
                     text = args.text,
+                    font = args.font,
                     valign = args.text_valign,
                     halign = args.text_halign,
                     widget = wibox.widget.textbox,
@@ -41,6 +47,11 @@ function _button.hover(args)
         forced_height = args.forced_height,
         widget = wibox.container.background,
     })
+
+    ui.add_hover(widget)
+    ui.add_color_hover(widget, args.bg_hover)
+
+    widget:connect_signal("button::press", args.action)
 
     return widget
 end
