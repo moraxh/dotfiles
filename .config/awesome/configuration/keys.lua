@@ -102,7 +102,11 @@ awful.keyboard.append_global_keybindings({
     -- Custom keys
 	awful.key({ mod }, "Escape", function()
         awesome.emit_signal("signal:menu_toggle")
-	end, {description = "Toggle mute", group = "Awesome"}),
+	end, {description = "Toggle menu", group = "Awesome"}),
+
+	awful.key({ mod, shift }, "e", function()
+        awesome.emit_signal("signal:powermenu_toggle")
+	end, {description = "Toggle powermenu", group = "Awesome"}),
 
 })
 
