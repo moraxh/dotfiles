@@ -8,7 +8,7 @@
 !.config/awesome
 !.config/nvim
 !.config/alacritty
-!.config/ranger
+!.config/ranger/rc.conf
 !.config/macchina
 
 !.gitignore
