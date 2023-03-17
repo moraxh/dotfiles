@@ -16,6 +16,7 @@ return function(s)
 
 	local widget_dir = "ui.panels.menu_panel"
     local session = require(widget_dir .. ".session")()
+    local powermenu = require(widget_dir .. ".powermenu")(s)
 
     panel = awful.popup {
         widget =
@@ -44,19 +45,18 @@ return function(s)
                 },
                 widget = wibox.container.background,
                 bg = beautiful.bg_normal,
-                shape = utilities.ui.rrect(11),
+                shape = utilities.shapes.rrect(11),
             },
             widget = wibox.container.margin,
         },
         placement = function(s)
             awful.placement.top_left(s, { margins = { top = beautiful.wibar_height + (beautiful.useless_gap * 4)}})
         end,
-        minimum_width = dpi(450),
-        maximum_width = dpi(450),
+        minimum_width = dpi(400),
+        maximum_width = dpi(400),
         minimum_height = dpi(550),
         maximum_height = dpi(550),
         bg = beautiful.transparent,
-        input_passthrough = true,
         ontop = true,
     }
 
@@ -65,7 +65,7 @@ return function(s)
     panel.widget.right = panel.minimum_width
 
     -- Exit with any key
-    keygrabber = awful.keygrabber {
+    menu_keygrabber = awful.keygrabber {
         allowed_keys = { nil },
         stop_event = "press",
         stop_callback = function()
@@ -75,7 +75,7 @@ return function(s)
         end
     }
 
-    toggle_animation = animation.timed {
+    menu_toggle_animation = animation.timed {
         intro = 0.15,
         rate = 1000,
         duration = 0.3,
@@ -87,28 +87,28 @@ return function(s)
         end
     }
 
-    animation_finished = true
+    menu_animation_finished = true
     awesome.connect_signal("signal:menu_toggle", function()
-        if panel.visible == true and animation_finished then
-            keygrabber:stop()
-            animation_finished = false
+        if panel.visible == true and menu_animation_finished then
+            menu_keygrabber:stop()
+            menu_animation_finished = false
 
-            toggle_animation.target = panel.minimum_width
+            menu_toggle_animation.target = panel.minimum_width
 
-            gears.timer { timeout = toggle_animation.duration, autostart = true, single_shot = true, callback = function()
+            gears.timer { timeout = menu_toggle_animation.duration, autostart = true, single_shot = true, callback = function()
                 panel.visible = false
-                animation_finished = true
+                menu_animation_finished = true
             end }
         else
-            if animation_finished then
-                animation_finished = false
+            if menu_animation_finished then
+                menu_animation_finished = false
 
                 panel.visible = true
-                toggle_animation.target = 0
+                menu_toggle_animation.target = 0
 
-                gears.timer { timeout = toggle_animation.duration, autostart = true, single_shot = true, callback = function()
-                    animation_finished = true
-                    keygrabber:start()
+                gears.timer { timeout = menu_toggle_animation.duration, autostart = true, single_shot = true, callback = function()
+                    menu_animation_finished = true
+                    menu_keygrabber:start()
                 end }
             end
         end
