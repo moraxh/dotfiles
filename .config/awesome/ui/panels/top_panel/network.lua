@@ -1,36 +1,27 @@
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
-
-local wibox = require("wibox")
-local beautiful = require("beautiful")
-local utilities = require("utilities")
-
 return function(s)
-	local network = wibox.widget({
+	local widget = wibox.widget({
 		widget = wibox.widget.textbox,
-		font = beautiful.network_font,
-		valign = "center",
-		align = "center",
+		font = beautiful.icon_font3,
 	})
 
 	awesome.connect_signal("signal:network", function(status)
 		if status[1] == 0 then
 			if status[2] ~= nil then
 				if tonumber(status[2]) < 60 then
-					network.markup = utilities.text.format(beautiful.icon_network_high, beautiful.white, nil, nil)
+					widget.markup = utilities.text.format(beautiful.icon_network_high, beautiful.white, nil, 24)
 				elseif tonumber(status[2]) < 70 then
-					network.markup = utilities.text.format(beautiful.icon_network_mid, beautiful.white, nil, nil)
+					widget.markup = utilities.text.format(beautiful.icon_network_mid, beautiful.white, nil, 24)
 				elseif tonumber(status[2]) < 80 then
-					network.markup = utilities.text.format(beautiful.icon_network_low, beautiful.white, nil, nil)
+					widget.markup = utilities.text.format(beautiful.icon_network_low, beautiful.white, nil, 24)
 				end
 			else
-				network.markup = utilities.text.format(beautiful.icon_network_high, beautiful.white, nil, nil)
+				widget.markup = utilities.text.format(beautiful.icon_network_high, beautiful.white, nil, 24)
 			end
 		else
-			network.markup = utilities.text.format(beautiful.icon_no_network, beautiful.white, nil, nil)
+			widget.markup = utilities.text.format(beautiful.icon_no_network, beautiful.white, nil, 24)
 
 		end
 	end)
 
-	return network
+	return widget
 end

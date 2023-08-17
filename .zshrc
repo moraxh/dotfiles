@@ -77,7 +77,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
+export PATH=~/.local/bin:$PATH
 # Preferred editor
 export EDITOR=nvim
 
@@ -92,4 +92,3 @@ alias lsa="ls -a"
 alias llsa="ls -l -a"
 alias yay="yay --noanswerdiff"
 alias sudo="sudo -p 'Identify ur self MF!: '"
-alias clear="clear ; macchina"

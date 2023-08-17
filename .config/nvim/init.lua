@@ -1,5 +1,7 @@
-require('plugins')
-require('configs')
-require('keybindings')
+set = vim.opt
+cmd = vim.cmd
+g = vim.g
 
-vim.cmd [[PackerInstall]]
+require("plugins")
+require("configs")
+require("keybindings")

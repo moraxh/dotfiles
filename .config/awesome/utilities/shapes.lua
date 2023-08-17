@@ -1,5 +1,3 @@
-local gears = require("gears")
-
 local shapes = {}
 
 function shapes.rrect(radius)
@@ -16,8 +14,14 @@ end
 
 function shapes.squircle(rate)
 	return function(cr, width, height, delta)
-		gears.shape.squircle (cr, width, height, rate, delta)
+		gears.shape.squircle(cr, width, height, rate, delta)
 	end
+end
+
+function shapes.arc(thickness, start_angle, end_angle, start_rounded, end_rounded)
+    return function(cr, width, height)
+        gears.shape.arc(cr, width, height, thickness, start_angle, end_angle, start_rounded, end_rounded)
+    end
 end
 
 return shapes

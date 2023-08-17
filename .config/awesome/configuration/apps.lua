@@ -1,6 +1,6 @@
 return{
-	terminal = "alacritty",
-	launcher = "rofi -show drun",
+    launcher = "rofi -show drun",
+    terminal = "kitty",
+    player = "spotify",
+    audio = "pavucontrol",
 }
-
-

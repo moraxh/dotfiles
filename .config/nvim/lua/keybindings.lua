@@ -4,23 +4,34 @@ local map = function(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.mapleader = " "
+g.mapleader = " "
 
 -- Telescope
 map('n', '<leader>f', ':Telescope find_files cwd=~/ hidden=true<CR>')
-map('n', "<leader>F", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+map('n', '<leader>lg', ':Telescope live_grep<CR>')
 
 -- Easymotion
 map('n', '<leader>s', '<Plug>(easymotion-s2)', {noremap = false})
 
 -- NvimTree
-map('n', '<leader>t', ':NvimTreeToggle<CR>')
+map('n', '<leader>e', ':NvimTreeToggle<CR>')
 
--- UndoTree
-map('n', '<leader>u', ':UndotreeToggle<CR>')
+-- Bufferline
+map('n', '<leader>.', ":BufferLineCycleNext<CR>")
+map('n', '<leader>,', ":BufferLineCyclePrev<CR>")
+map('n', '<leader>>', ":BufferLineMoveNext<CR>")
+map('n', '<leader><', ":BufferLineMovePrev<CR>")
+map('n', '<leader>bd',":bd<CR>")
+map('n', '<C-x>', ":bn<CR>:bd #<CR>:bp<CR>")
 
---Dashboard
-map('n', '<leader>q', ':SessionSave default<CR>:echo "Session Saved!"<CR>')
+-- Tabs
+map('n', '<leader><C-t>', ":tabnew<CR>")
+
+-- Text alignment
+map('v', '<leader>=', ":Tabularize /=<CR>")
+
+-- Markdown Preview
+map('n', '<leader>mp', "<Plug>MarkdownPreview")
 
 -- Move cursor with h,j,k,l in insert mode
 map('i', '<A-h>', '<C-o>h')
@@ -28,7 +39,7 @@ map('i', '<A-j>', '<C-o>j')
 map('i', '<A-k>', '<C-o>k')
 map('i', '<A-l>', '<C-o>a')
 
--- Move b/w spilt windows
+-- Move b/w spilt panels
 map('n', '<leader>h', ':wincmd h<CR>')
 map('n', '<leader>j', ':wincmd j<CR>')
 map('n', '<leader>l', ':wincmd l<CR>')
@@ -73,15 +84,10 @@ map('v', 'J', ":m '>+1<CR>gv=gv")
 map('n', '<leader>k', ':m .-2<CR>==')
 map('n', '<leader>j', ':m .+1<CR>==')
 
--- Exit insert mode without using <ESC>
--- map('i', 'cc', '<ESC>')
-
 -- Move faster
 map('n', '<C-j>', ':+10<CR>')
 map('n', '<C-k>', ':-10<CR>')
 
-
 -- Resize window
--- FIX Ctrl-r redo
--- map('n', '<C-r>', ':vertical-resize +5<CR>', { noremap = false})
-map('n', '<C-l>', ':vertical-resize -5<CR>', { noremap = false })
+map('n', '<C-+>', ':vertical-resize +5<CR>', { noremap = false})
+map('n', '<C-->', ':vertical-resize -5<CR>', { noremap = false })

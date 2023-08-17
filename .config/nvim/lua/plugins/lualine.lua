@@ -1,36 +1,45 @@
-require('lualine').setup {
-    options = {
-        icons_enabled = true,
-        theme = 'catppuccin',
-        section_separators = { left = '', right = ''},
-        always_divide_middle = false,
-        disabled_filetypes = { 'dashboard', 'NvimTree' },
-    },
-    sections = {
-        lualine_a = { 'mode' },
+return function()
+    local navic = require("nvim-navic")
 
-        lualine_b = {
-            { 'branch' },
-            {
-                'diagnostics',
-
-                sources = { 'nvim_lsp' },
-
-                sections = { 'error', 'warn' },
-
-                diagnostics_color = {
-                    error = { fg = '#DC6068' },
-                    warn  = { fg = '#E6B455' },
-                },
-                symbols = { error = ' ', warn = ' ' },
-                colored = true,
-                update_in_insert = false,
-                always_visible = false,
-            },
+    require("lualine").setup({
+        options = {
+            component_separators    = { left = '', right = '' },
+            always_divide_middle    = false,
+            section_separators      = { left = '', right = '' },
+            disabled_filetypes      = { "dashboard" },
+            icons_enabled           = true,
+            globalstatus            = true,
+            theme                   = "catppuccin",
         },
-        lualine_c = { 'filename' },
-        lualine_x = { 'filetype' },
-        lualine_y = { 'filesize' },
-        lualine_z = { 'location' },
-    }
-}
+        sections = {
+            lualine_a = { "mode" },
+
+            lualine_b = {
+                { "branch" },
+                {
+                    "diagnostics",
+
+                    sources = { "nvim_lsp" },
+
+                    sections = { "error", "warn" },
+
+                    diagnostics_color = {
+                        error = { fg = "#DC6068" },
+                        warn  = { fg = "#f9e2af" },
+                    },
+                    update_in_insert    = false,
+                    always_visible      = false,
+                    symbols             = { error = " ", warn = " " },
+                    colored             = true,
+                },
+            },
+            lualine_c = { { "filename", file_status = true, newfile_status = true, path = 1 } },
+            lualine_x = { "filetype" },
+            lualine_y = { "filesize" },
+            lualine_z = { "location" },
+        },
+        winbar = {
+            lualine_c = { "navic" },
+        },
+    })
+end

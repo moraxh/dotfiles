@@ -1,0 +1,20 @@
+{
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "description": "Neovim",
+    "diagnostics": {
+        "enable": true,
+        "globals": [
+            "vim",
+            "set",
+            "cmd",
+            "g",
+        ]
+    },
+    "workspace": {
+        "library": [
+        ],
+        "maxPreload": 2000,
+        "preloadFileSize": 1000
+    },
+    "telemetry.enable": false
+}

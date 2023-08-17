@@ -1,115 +1,185 @@
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
-local utilities = require("utilities")
-local animation = require("lib.rubato")
-
-local wibox = require("wibox")
-local awful = require("awful")
-local gears = require("gears")
-
-local beautiful = require("beautiful")
-
 return function(s)
+	local widget_dir    = "ui.panels.menu_panel"
+    local controls      = require(widget_dir .. ".controls")()
+    local session       = require(widget_dir .. ".session")()
+    local player        = require(widget_dir .. ".player")()
 
-    -- Widgets
-    ----------
+    local session_widget = wibox.widget({
+        session,
+        widget  = wibox.container.margin,
+        bottom  = beautiful.menu_vgap,
+        right   = beautiful.menu_hgap,
+        left    = beautiful.menu_hgap,
+        top     = beautiful.menu_vgap,
+    })
 
-	local widget_dir = "ui.panels.menu_panel"
-    local session = require(widget_dir .. ".session")()
-    local powermenu = require(widget_dir .. ".powermenu")(s)
+    local player_widget = wibox.widget({
+        player,
+        widget          = wibox.container.background,
+        forced_height   = dpi(180),
+        shape           = utilities.shapes.rrect(15),
+        bg              = beautiful.bg_normal2,
+    })
 
-    panel = awful.popup {
-        widget =
+    local controls_widget = wibox.widget({
+        controls,
+        widget          = wibox.container.background,
+        forced_height   = dpi(180),
+        shape           = utilities.shapes.rrect(15),
+        bg              = beautiful.bg_normal2,
+    })
+
+    local widgets = wibox.widget({
         {
             {
-                {
-                    {
-                        {
-                            session,
-                            widget = wibox.container.place,
-                            content_fill_horizontal = true,
-                            content_fill_vertical = true,
-                            forced_height = dpi(94),
-                        },
-                        widget = wibox.container.background,
-                        bg = beautiful.bg_alt2
-                    },
-                    {
-                        {
-                            widget = wibox.container.place,
-                        },
-                        widget = wibox.container.background,
-                    },
-                    layout = wibox.layout.fixed.vertical,
-                    fill_space = true,
-                },
-                widget = wibox.container.background,
-                bg = beautiful.bg_normal,
-                shape = utilities.shapes.rrect(11),
+                player_widget,
+                controls_widget,
+                layout  = wibox.layout.fixed.vertical,
+                spacing = beautiful.menu_vgap,
             },
-            widget = wibox.container.margin,
+            widget  = wibox.container.margin,
+            bottom  = beautiful.menu_vgap,
+            right   = beautiful.menu_hgap,
+            left    = beautiful.menu_hgap,
+            top     = beautiful.menu_vgap,
         },
-        placement = function(s)
-            awful.placement.top_left(s, { margins = { top = beautiful.wibar_height + (beautiful.useless_gap * 4)}})
-        end,
-        minimum_width = dpi(400),
-        maximum_width = dpi(400),
-        minimum_height = dpi(550),
-        maximum_height = dpi(550),
-        bg = beautiful.transparent,
-        ontop = true,
-    }
+        widget  = wibox.container.background,
+        shape   = utilities.shapes.rrect(15),
+        bg      = beautiful.bg_alt,
+    })
 
-    panel.visible = false
-    panel.widget.left = (panel.minimum_width * -1)
-    panel.widget.right = panel.minimum_width
+    local menu_widget = wibox.widget({
+        {
+            {
+                session_widget,
+                widgets,
+                layout      = wibox.layout.fixed.vertical,
+                fill_space  = true,
+            },
+            widget  = wibox.container.background,
+            shape   = utilities.shapes.rrect(15),
+            bg      = beautiful.bg_normal2,
+        },
+        widget = wibox.container.margin,
+    })
+
+    local menu = awful.popup({
+        widget = menu_widget,
+        placement = function(s)
+            awful.placement.top_left(s, { margins = { top = beautiful.wibar_height + beautiful.useless_gap * 4}})
+        end,
+
+        minimum_width   = dpi(435),
+        maximum_width   = dpi(435),
+        ontop           = true,
+        bg              = beautiful.transparent,
+    })
+
+    menu.visible = false
 
     -- Exit with any key
-    menu_keygrabber = awful.keygrabber {
-        allowed_keys = { nil },
-        stop_event = "press",
+    local menu_keygrabber = awful.keygrabber {
+        allowed_keys    = { nil },
+        stop_event      = "press",
         stop_callback = function()
-            if panel.visible == true then
+            if menu.visible then
                 awesome.emit_signal("signal:menu_toggle")
             end
         end
     }
 
-    menu_toggle_animation = animation.timed {
-        intro = 0.15,
-        rate = 1000,
-        duration = 0.3,
-        pos = panel.minimum_width,
-        easing = animation.quadratic,
+    local menu_toggle_animation = animation.timed {
+        awestore_compat = true,
+        duration        = 0.4,
+        easing          = animation.easing.quadratic,
+        outro           = 0.3,
+        intro           = 0.1,
+        rate            = 100,
+        pos             = menu.minimum_width,
         subscribed = function(pos)
-            panel.widget.left = pos * -1 + beautiful.useless_gap * 2
-            panel.widget.right = pos  + beautiful.useless_gap * 2
+            menu_widget.left    = pos * -1 + beautiful.useless_gap * 2
+            menu_widget.right   = pos  + beautiful.useless_gap * 2
+            menu:draw()
         end
     }
 
-    menu_animation_finished = true
-    awesome.connect_signal("signal:menu_toggle", function()
-        if panel.visible == true and menu_animation_finished then
-            menu_keygrabber:stop()
-            menu_animation_finished = false
+    local background_widget = wibox.widget({
+        widget          = wibox.container.place,
+        forced_height   = s.geometry.height,
+        forced_width    = s.geometry.width,
+    })
 
-            menu_toggle_animation.target = panel.minimum_width
+    local background = awful.popup({
+        widget              = background_widget,
+        minimum_height      = s.geometry.height,
+        maximum_height      = s.geometry.height,
+        minimum_width       = s.geometry.width,
+        maximum_width       = s.geometry.width,
+        ontop               = true,
+        bg                  = beautiful.transparent,
+    })
 
-            gears.timer { timeout = menu_toggle_animation.duration, autostart = true, single_shot = true, callback = function()
-                panel.visible = false
-                menu_animation_finished = true
-            end }
-        else
-            if menu_animation_finished then
-                menu_animation_finished = false
+    background_widget:connect_signal("button::press", function()
+        awesome.emit_signal("signal:menu_toggle")
+    end)
 
-                panel.visible = true
+    background.visible  = false
+
+
+    local widgets_toggle_animation = animation.timed({
+        awestore_compat = true,
+        duration        = 0.35,
+        easing          = animation.easing.quadratic,
+        intro           = 0.15,
+        outro           = 0.05,
+        rate            = 100,
+        pos             = dpi(1),
+        subscribed = function(pos)
+            widgets.forced_height = pos
+        end
+    })
+
+    awesome.connect_signal("signal:menu_toggle", function(callback)
+        callback = callback or nil
+        if not(menu_toggle_animation.running) and not(widgets_toggle_animation.running) then
+            if menu.visible then
+                -- Widgets animation
+                widgets_toggle_animation.target = dpi(1)
+
+                widgets_toggle_animation.ended:subscribe(function()
+                    widgets.visible = false
+
+                    menu_toggle_animation.target = menu.minimum_width
+                    menu_toggle_animation.ended:subscribe(function()
+                        menu.visible = false
+                        background.visible = false
+                        menu_toggle_animation.ended:unsubscribe(self)
+                        menu_keygrabber:stop()
+
+                        if callback then
+                            callback()
+                        end
+                    end)
+
+                    widgets_toggle_animation.ended:unsubscribe(self)
+                end)
+            else
+                background.visible = true
+                menu.visible = true
                 menu_toggle_animation.target = 0
 
-                gears.timer { timeout = menu_toggle_animation.duration, autostart = true, single_shot = true, callback = function()
-                    menu_animation_finished = true
+                menu_toggle_animation.ended:subscribe(function()
+                    menu_toggle_animation.ended:unsubscribe(self)
+
+                    widgets.visible = true
+                    awesome.emit_signal("player:reset_scroll")
+
+                    widgets_toggle_animation.target = player_widget.forced_height + controls_widget.forced_height + (beautiful.menu_vgap * 3)
+                end)
+                widgets_toggle_animation.ended:subscribe(function()
+                    widgets_toggle_animation.ended:unsubscribe(self)
                     menu_keygrabber:start()
-                end }
+                end)
             end
         end
     end)

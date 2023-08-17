@@ -1,5 +1,3 @@
-local awful = require("awful")
-local gears = require("gears")
 local apps = require("configuration.apps")
 
 local mod = "Mod4"
@@ -10,8 +8,12 @@ local shift = "Shift"
 -- Global bindings
 awful.keyboard.append_global_keybindings({
 
-	----- Apps
-	----------
+
+    --    ___
+    --   / _ | ___  ___  ___
+    --  / __ |/ _ \/ _ \(_-<
+    -- /_/ |_/ .__/ .__/___/
+    --      /_/  /_/
 
 	-- Terminal
 	awful.key({ mod }, "Return", function()
@@ -23,9 +25,11 @@ awful.keyboard.append_global_keybindings({
 		awful.spawn(apps.launcher)
 	end, {description = "Open the lanucher", group = "App"}),
 
-
-	----- Awesome
-	-------------
+    --    ___
+    --   / _ |_    _____ ___ ___  __ _  ___
+    --  / __ | |/|/ / -_|_-</ _ \/  ' \/ -_)
+    -- /_/ |_|__,__/\__/___/\___/_/_/_/\__/
+    --
 
 	-- Restart awesome
     	awful.key({ mod, ctrl }, "r", awesome.restart,
@@ -75,8 +79,14 @@ awful.keyboard.append_global_keybindings({
                           end
                      end
 	end}),
-    -- Brightness
 
+
+    --   _____          __           __
+    --  / ___/__  ___  / /________  / /__
+    -- / /__/ _ \/ _ \/ __/ __/ _ \/ (_-<
+    -- \___/\___/_//_/\__/_/  \___/_/___/
+
+    -- Brightness
 	awful.key({ }, "XF86MonBrightnessUp", function()
 		awful.spawn("brightnessctl s +10% -q")
 	end, {description = "Brightness up", group = "Awesome"}),
@@ -98,8 +108,21 @@ awful.keyboard.append_global_keybindings({
 		awful.spawn("amixer -q -D default set Master toggle")
 	end, {description = "Toggle mute", group = "Awesome"}),
 
+    -- Play Pause
+	awful.key({ }, "XF86AudioPlay", function()
+		awful.spawn("playerctl play-pause --player=" .. apps.player)
+	end, {description = "Toggle mute", group = "Awesome"}),
 
-    -- Custom keys
+    -- Screenshot
+	awful.key({ }, "Print", function()
+        utilities.sshot.full()
+	end, {description = "Take screenshot", group = "Awesome"}),
+
+    --   _____         __
+    --  / ___/_ _____ / /____  __ _
+    -- / /__/ // (_-</ __/ _ \/  ' \
+    -- \___/\_,_/___/\__/\___/_/_/_/
+
 	awful.key({ mod }, "Escape", function()
         awesome.emit_signal("signal:menu_toggle")
 	end, {description = "Toggle menu", group = "Awesome"}),
@@ -107,6 +130,10 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ mod, shift }, "e", function()
         awesome.emit_signal("signal:powermenu_toggle")
 	end, {description = "Toggle powermenu", group = "Awesome"}),
+
+	awful.key({ mod, shift }, "l", function()
+        awesome.emit_signal("signal:lockscreen_lock")
+	end, {description = "Toggle lockscreen", group = "Awesome"}),
 
 })
 

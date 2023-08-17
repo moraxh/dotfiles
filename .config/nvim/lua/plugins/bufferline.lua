@@ -1,32 +1,34 @@
-local mocha = require("catppuccin.palettes").get_palette "mocha"
+return function()
+    local mocha = require("catppuccin.palettes").get_palette "mocha"
 
-require('bufferline').setup {
-    options = {
-        show_tab_indicators = false,
-        show_close_icon = false,
-        separator_style = 'thick',
-        numbers = 'none',
-        always_show_bufferline = true,
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text = "NvimTree",
-                highlight = "Directory"
-            }
+    require("bufferline").setup {
+        options = {
+            buffer_close_icon = "󰅖",
+            show_close_icon   = false,
+            close_command     = "bdelete! %d",
+            separator_style   = "slope",
+            diagnostics       = "nvim_lsp",
+            numbers           = "none",
+            offsets = {
+                {
+                    filetype = "NvimTree",
+                    text = "File Explorer",
+                    text_align = "center",
+                    separator = false,
+                }
+            },
         },
         highlights = require("catppuccin.groups.integrations.bufferline").get {
-                styles = { "italic", "bold" },
-                custom = {
-                    all = {
-                        fill = { bg = "#000000" },
-                    },
-                    mocha = {
-                        background = { fg = mocha.text },
-                    },
-                    latte = {
-                        background = { fg = "#000000" },
-                    },
+            styles = { "italic", "bold" },
+            custom = {
+                all = {
+                },
+                mocha = {
+                    background = { fg = mocha.text },
+                },
+                latte = {
                 },
             },
+        },
     }
-}
+end
